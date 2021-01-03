@@ -72,11 +72,15 @@ fun Counter(count: Int, updateCount: (Int) -> Unit) {
 @Composable
 fun Greeting(name: String) {
     Surface(color = Color.Yellow) {
-        Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+        Text(
+            text = "Hello $name!",
+            modifier = Modifier.padding(24.dp),
+            style = MaterialTheme.typography.h1
+        )
     }
 }
 
-@Preview(showBackground = true, name = "Text Preview")
+@Preview(showBackground = true, name = "Content")
 @Composable
 fun DefaultPreview() {
     MyApp {
