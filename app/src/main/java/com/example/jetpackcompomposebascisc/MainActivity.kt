@@ -2,8 +2,7 @@ package com.example.jetpackcompomposebascisc
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -40,10 +39,12 @@ fun MyApp(content: @Composable () -> Unit) {
 fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
     val counterState = remember { mutableStateOf(0) }
 
-    Column {
-        for (name in names) {
-            Greeting(name)
-            Divider(color = Color.Black)
+    Column(modifier = Modifier.fillMaxHeight()) {
+        Column(modifier = Modifier.weight(1f)) {
+            for (name in names) {
+                Greeting(name)
+                Divider(color = Color.Black)
+            }
         }
         Divider(color = Color.Transparent, thickness = 32.dp)
         Counter(
@@ -57,8 +58,14 @@ fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
 
 @Composable
 fun Counter(count: Int, updateCount: (Int) -> Unit) {
-    Button(onClick = { updateCount(count + 1)}) {
-        Text("I've been clicked ${count} times")
+    Button(
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { updateCount(count + 1) },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = if (count > 5) Color.Green else Color.White
+        )
+    ) {
+        Text("I've been clicked $count times")
     }
 }
 
